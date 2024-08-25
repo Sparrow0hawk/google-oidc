@@ -44,3 +44,28 @@ This is a project testing out how to use Google as an OIDC IdP for use with Flas
    ```bash
    flask run
    ```
+
+## Fly.io test deploy
+
+Test this out on Fly.io.
+
+1. Add fly.io domain to Authorized Origin and redirect URI to Google Client.
+   Using HTTP protocol as it is Fly.io handling HTTPS enforcement.
+1. Set secrets
+   ```bash
+   fly secrets import < .env
+   ```
+1. Deploy locally to fly.io
+   ```bash
+   fly deploy
+   ```
+
+## Notes
+
+When testing with localhost I found I was always required to provide consent after selecting my account no matter 
+if I'd logged in previously and provided consent. I couldn't find anything in the documentation about this behaviour 
+and saw suggestion online there was special treatment of [localhost](https://stackoverflow.com/a/14929345/10651182) forcing
+re-consent on every login.
+
+When testing on Fly.io I found I didn't need to provide consent at all (after consenting using localhost) so the 
+undocumented behaviour described on Stackoverflow does indeed appear to be the case.
