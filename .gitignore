@@ -1,2 +1,9 @@
 # IDE
 .idea
+
+# secrets
+.env
+
+# python
+.venv
+__pycache__
